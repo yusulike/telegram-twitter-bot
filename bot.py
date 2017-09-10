@@ -1,7 +1,8 @@
 #!/user/bin/env python3
 import common
 
-from telegram import Updater
+from telegram.ext import Updater
+from telegram.ext import CommandHandler
 
 #command handlers
 def subscribe(bot, update):
@@ -31,8 +32,8 @@ def bot_main(bot_token=""):
     dp = updater.dispatcher
 
     # on different commands - answer in Telegram
-    dp.addTelegramCommandHandler("subscribe", subscribe)
-    dp.addTelegramCommandHandler("unsubscribe", unsubscribe)
+    dp.add_handler(CommandHandler('subscribe', subscribe))
+    dp.add_handler(CommandHandler("unsubscribe", unsubscribe))
 
     # Start the Bot
     updater.start_polling(timeout=5)
